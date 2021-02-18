@@ -11,29 +11,8 @@ import createAuth0Client from '@auth0/auth0-spa-js';
 
 
 
-//
-// axios.interceptors.request.use(async config => {
-//
-//   // either with async/await
-//   const auth0 = await createAuth0Client({
-//     domain: 'ki-apps.us.auth0.com',
-//     client_id: 'EyxckU5q2PkttnnvMvOYVgU8xzyrrcWG'
-//   });
-//
-//
-//   const token = await auth0.getTokenSilently();
-//
-//   return {
-//     ...config,
-//     headers: {
-//       ...config.headers,
-//       Authorization: `Bearer ${token}`
-//     }
-//   }
-//   // return config;
-// }, error => {
-//   return Promise.reject(error);
-// })
+
+
 
 
 ReactDOM.render(

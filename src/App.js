@@ -4,10 +4,28 @@ import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import LogoutButton from './logout';
 import SendIt from './send-it';
 import UpdateIt from './update-it';
+import axios from 'axios';
 
 function App() {
 
   const { isLoading, error, getAccessTokenSilently } = useAuth0();
+
+  axios.interceptors.request.use(async config => {
+
+    const token = await getAccessTokenSilently();
+
+    return {
+      ...config,
+      headers: {
+        ...config.headers,
+        Authorization: `Bearer ${token}`
+      }
+    }
+
+    // return config;
+  }, error => {
+    return Promise.reject(error);
+  })
 
   if (error) {
     return <div>Oops... {error.message}</div>;
