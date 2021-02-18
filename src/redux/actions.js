@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const sendIt = () => ({
   type: constants.SEND_IT,
-  payload: axios.post('http://localhost:8080/issue', { description : 'bar'})
+  payload: axios.post('http://localhost:8080/customers', { lastName: 'kulis'})
 })
 
 
