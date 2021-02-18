@@ -1,7 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import LogoutButton from './logout';
+import SendIt from './send-it';
+import UpdateIt from './update-it';
 
 function App() {
+
+  const { isLoading, error, getAccessTokenSilently } = useAuth0();
+
+  if (error) {
+    return <div>Oops... {error.message}</div>;
+  }
+
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,8 +33,11 @@ function App() {
           Learn React
         </a>
       </header>
+      <SendIt />
+      <UpdateIt />
+      <LogoutButton />
     </div>
   );
 }
 
-export default App;
+export default withAuthenticationRequired(App, { onRedirecting: () => <div>Loading</div> });
